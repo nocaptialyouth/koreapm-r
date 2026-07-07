@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>전국 재활·요양기관 통합 안내 포털 | 재활지도</title>
+    <meta name="description" content="울산, 경남, 부산, 대구 등 대한민국 지역별 맞춤 재활의학과·재활요양·요양병원 리스트를 한눈에 확인하세요. 보호자를 위한 쉽고 정확한 검색 가이드.">
+    <meta name="keywords" content="재활요양, 요양병원, 재활의학과, 회복기 재활, 대구 재활병원, 부산 재활병원, 울산 재활병원, 경남 재활병원, 보호자 재활 가이드">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="전국 재활·요양기관 통합 안내 포털">
+    <meta property="og:description" content="울산, 경남, 부산, 대구 등 지역별 재활의학과·재활요양·요양병원 리스트를 쉽고 빠르게 확인하세요.">
+    <meta property="og:image" content="korea-map.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="전국 재활·요양기관 통합 안내 포털">
+    <meta property="twitter:description" content="울산, 경남, 부산, 대구 등 지역별 재활의학과·재활요양·요양병원 리스트를 쉽고 빠르게 확인하세요.">
+    <meta property="twitter:image" content="korea-map.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background Gradient Blobs -->
+    <div class="glow-blob blob-teal"></div>
+    <div class="glow-blob blob-blue"></div>
+
+    <div class="app-container">
+        <!-- Top Bar Navigation -->
+        <nav class="top-nav" aria-label="상단 네비게이션">
+            <div class="brand-container">
+                <span class="brand-icon">✚</span>
+                <span class="brand-text">전국 재활·요양기관 안내</span>
+            </div>
+            <div class="nav-actions">
+                <button id="btn-share" class="btn btn-secondary">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"/></svg>
+                    포털 공유하기
+                </button>
+            </div>
+        </nav>
+
+        <!-- Header / Hero Section -->
+        <header class="hero-section">
+            <div class="hero-content">
+                <p class="hero-eyebrow">보호자를 위한 스마트 재활 길잡이</p>
+                <h1 class="hero-title">내 가족을 위한<br><em>재활·요양기관을 한눈에.</em></h1>
+                <p class="hero-lead">어려운 재활 병원 찾기, 이제 거주하시는 지역을 선택하여 시작해 보세요.<br>검증된 전문 재활 정보를 보호자의 시선에서 쉽게 알려 드립니다.</p>
+                
+                <!-- Search Bar for Region -->
+                <div class="search-wrapper">
+                    <svg class="search-icon" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                    <input type="text" id="regionSearch" autocomplete="off" placeholder="찾으시는 지역명을 입력하세요 (예: 서울, 경남, 대구, 부산...)">
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Workspace Area -->
+        <main class="main-content">
+            <!-- Left: Interactive Map -->
+            <section class="map-card" aria-label="대한민국 재활 지도">
+                <div class="card-header">
+                    <h2>🗺️ 대한민국 재활 지도</h2>
+                    <p class="card-subtitle">원하는 지역명을 클릭하면 이동합니다.</p>
+                </div>
+                
+                <div class="map-container-outer">
+                    <div class="map-wrapper" id="koreaMapWrapper">
+                        <img src="korea-map.png" alt="대한민국 행정구역 지도" class="korea-map-img">
+                        
+                        <!-- Map Hotspots (Percentage layout based on reference image) -->
+                        
+                        <!-- 수도권 확대 지도 (Top-Left Inset Box) -->
+                        <button class="map-hotspot inactive" style="left: 17.5%; top: 19.5%; width: 9%; height: 3.5%;" data-region="seoul" data-name="서울특별시" aria-label="서울특별시 (준비 중)"></button>
+                        <button class="map-hotspot inactive" style="left: 7.5%; top: 23%; width: 9%; height: 3.5%;" data-region="incheon" data-name="인천광역시" aria-label="인천광역시 (준비 중)"></button>
+                        <button class="map-hotspot inactive" style="left: 20%; top: 24.5%; width: 9%; height: 3.5%;" data-region="gyeonggi" data-name="경기도" aria-label="경기도 (준비 중)"></button>
+
+                        <!-- 메인 지도 본문 (Main Map Area) -->
+                        <!-- 서울특별시 -->
+                        <button class="map-hotspot inactive" style="left: 43.5%; top: 30.2%; width: 8%; height: 3.5%;" data-region="seoul" data-name="서울특별시" aria-label="서울특별시 (준비 중)"></button>
+                        <!-- 인천광역시 -->
+                        <button class="map-hotspot inactive" style="left: 37.5%; top: 33.5%; width: 8%; height: 3.5%;" data-region="incheon" data-name="인천광역시" aria-label="인천광역시 (준비 중)"></button>
+                        <!-- 경기도 -->
+                        <button class="map-hotspot inactive" style="left: 46%; top: 34.5%; width: 8%; height: 3.5%;" data-region="gyeonggi" data-name="경기도" aria-label="경기도 (준비 중)"></button>
+                        <!-- 강원특별자치도 -->
+                        <button class="map-hotspot inactive" style="left: 68.5%; top: 28.5%; width: 14%; height: 4.5%;" data-region="gangwon" data-name="강원특별자치도" aria-label="강원특별자치도 (준비 중)"></button>
+                        <!-- 충청북도 -->
+                        <button class="map-hotspot inactive" style="left: 61%; top: 44%; width: 10%; height: 4%;" data-region="chungbuk" data-name="충청북도" aria-label="충청북도 (준비 중)"></button>
+                        <!-- 충청남도 -->
+                        <button class="map-hotspot inactive" style="left: 39.5%; top: 49%; width: 10%; height: 4%;" data-region="chungnam" data-name="충청남도" aria-label="충청남도 (준비 중)"></button>
+                        <!-- 세종특별자치시 -->
+                        <button class="map-hotspot inactive" style="left: 48.5%; top: 47.5%; width: 10%; height: 3%;" data-region="sejong" data-name="세종특별자치시" aria-label="세종특별자치시 (준비 중)"></button>
+                        <!-- 대전광역시 -->
+                        <button class="map-hotspot inactive" style="left: 51.5%; top: 52%; width: 10%; height: 3.5%;" data-region="daejeon" data-name="대전광역시" aria-label="대전광역시 (준비 중)"></button>
+                        <!-- 경상북도 -->
+                        <button class="map-hotspot inactive" style="left: 75.5%; top: 52%; width: 10%; height: 4%;" data-region="gyeongbuk" data-name="경상북도" aria-label="경상북도 (준비 중)"></button>
+                        
+                        <!-- 대구광역시 (ACTIVE) -->
+                        <a href="https://daegupm-r.vercel.app/" target="_blank" rel="noopener" class="map-hotspot active" style="left: 73.5%; top: 60%; width: 11%; height: 4%;" data-region="daegu" data-name="대구광역시" aria-label="대구광역시 재활기관 바로가기">
+                            <span class="pulse-ring"></span>
+                            <span class="hotspot-tag">대구 ↗</span>
+                        </a>
+                        
+                        <!-- 전북특별자치도 -->
+                        <button class="map-hotspot inactive" style="left: 44%; top: 63.5%; width: 14%; height: 4.5%;" data-region="jeonbuk" data-name="전북특별자치도" aria-label="전북특별자치도 (준비 중)"></button>
+                        
+                        <!-- 울산광역시 (ACTIVE) -->
+                        <a href="https://ulsanpm-r.vercel.app/" target="_blank" rel="noopener" class="map-hotspot active" style="left: 85%; top: 65.5%; width: 11%; height: 4%;" data-region="ulsan" data-name="울산광역시" aria-label="울산광역시 재활기관 바로가기">
+                            <span class="pulse-ring"></span>
+                            <span class="hotspot-tag">울산 ↗</span>
+                        </a>
+                        
+                        <!-- 부산광역시 (ACTIVE) -->
+                        <a href="https://busanpm-r.vercel.app/" target="_blank" rel="noopener" class="map-hotspot active" style="left: 82.5%; top: 71.5%; width: 11%; height: 4%;" data-region="busan" data-name="부산광역시" aria-label="부산광역시 재활기관 바로가기">
+                            <span class="pulse-ring"></span>
+                            <span class="hotspot-tag">부산 ↗</span>
+                        </a>
+                        
+                        <!-- 경상남도 (ACTIVE) -->
+                        <a href="https://gyeongnampm-r.vercel.app/" target="_blank" rel="noopener" class="map-hotspot active" style="left: 66.5%; top: 69.5%; width: 11%; height: 4%;" data-region="gyeongnam" data-name="경상남도" aria-label="경상남도 재활기관 바로가기">
+                            <span class="pulse-ring"></span>
+                            <span class="hotspot-tag">경남 ↗</span>
+                        </a>
+                        
+                        <!-- 전라남도 -->
+                        <button class="map-hotspot inactive" style="left: 41%; top: 75.5%; width: 10%; height: 4%;" data-region="jeonnam" data-name="전라남도" aria-label="전라남도 (준비 중)"></button>
+                        <!-- 제주특별자치도 -->
+                        <button class="map-hotspot inactive" style="left: 14%; top: 93%; width: 15%; height: 4.5%;" data-region="jeju" data-name="제주특별자치도" aria-label="제주특별자치도 (준비 중)"></button>
+                        <!-- 울릉도 -->
+                        <button class="map-hotspot inactive" style="left: 92.5%; top: 22.5%; width: 8%; height: 3.5%;" data-region="ulleung" data-name="울릉도" aria-label="울릉도 (준비 중)"></button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right: Region Cards List -->
+            <section class="region-list-section" aria-label="지역별 서비스 목록">
+                <div class="list-header">
+                    <h2>🏢 지역별 서비스 목록</h2>
+                    <p class="list-count"><strong id="activeCount">4</strong>개 지역 운영 중</p>
+                </div>
+                
+                <div class="regions-grid" id="regionsGrid">
+                    <!-- 대구광역시 (Active) -->
+                    <article class="region-card active" data-search-keys="대구 대구광역시 daegu">
+                        <div class="card-badge badge-active">서비스 중</div>
+                        <h3 class="card-region-title">대구광역시</h3>
+                        <p class="card-desc">대구 내 9개 구·군 재활의학과, 재활요양, 요양병원, 한의원 데이터가 실시간 연동되어 있습니다.</p>
+                        <div class="card-meta">
+                            <span>보건복지부 지정 회복기 재활병원 포함</span>
+                        </div>
+                        <a href="https://daegupm-r.vercel.app/" target="_blank" rel="noopener" class="btn btn-primary btn-block">대구 재활기관 찾기 ↗</a>
+                    </article>
+
+                    <!-- 부산광역시 (Active) -->
+                    <article class="region-card active" data-search-keys="부산 부산광역시 busan">
+                        <div class="card-badge badge-active">서비스 중</div>
+                        <h3 class="card-region-title">부산광역시</h3>
+                        <p class="card-desc">부산 지역별 전문 재활병원 및 재활치료 가능 요양병원 정보를 빠르게 검색할 수 있습니다.</p>
+                        <div class="card-meta">
+                            <span>교차검토 완료 데이터 제공</span>
+                        </div>
+                        <a href="https://busanpm-r.vercel.app/" target="_blank" rel="noopener" class="btn btn-primary btn-block">부산 재활기관 찾기 ↗</a>
+                    </article>
+
+                    <!-- 울산광역시 (Active) -->
+                    <article class="region-card active" data-search-keys="울산 울산광역시 ulsan">
+                        <div class="card-badge badge-active">서비스 중</div>
+                        <h3 class="card-region-title">울산광역시</h3>
+                        <p class="card-desc">울산 관내 재활의학과 전문의 상주 병원 및 보조보험(산재/자보) 적용 가능 여부 확인.</p>
+                        <div class="card-meta">
+                            <span>보호자 검색 추천 가이드 연동</span>
+                        </div>
+                        <a href="https://ulsanpm-r.vercel.app/" target="_blank" rel="noopener" class="btn btn-primary btn-block">울산 재활기관 찾기 ↗</a>
+                    </article>
+
+                    <!-- 경상남도 (Active) -->
+                    <article class="region-card active" data-search-keys="경남 경상남도 gyeongnam 창원 김해 양산 진주">
+                        <div class="card-badge badge-active">서비스 중</div>
+                        <h3 class="card-region-title">경상남도</h3>
+                        <p class="card-desc">창원, 김해, 양산 등 경상남도 시·군 지역 내 최적의 재활 치료실 보유 병원 검색.</p>
+                        <div class="card-meta">
+                            <span>김해·양산 포함 상세 서칭 가능</span>
+                        </div>
+                        <a href="https://gyeongnampm-r.vercel.app/" target="_blank" rel="noopener" class="btn btn-primary btn-block">경남 재활기관 찾기 ↗</a>
+                    </article>
+
+                    <!-- Inactive Regions (For scaling) -->
+                    <article class="region-card inactive" data-search-keys="서울 서울특별시 seoul" data-name="서울특별시">
+                        <div class="card-badge badge-preparing">준비 중</div>
+                        <h3 class="card-region-title">서울특별시</h3>
+                        <p class="card-desc">서울 지역 재활 병원 및 요양기관 데이터베이스 구축을 진행하고 있습니다.</p>
+                        <button class="btn btn-muted btn-block btn-open-request">데이터 오픈 알림 신청</button>
+                    </article>
+
+                    <article class="region-card inactive" data-search-keys="경기 경기도 gyeonggi" data-name="경기도">
+                        <div class="card-badge badge-preparing">준비 중</div>
+                        <h3 class="card-region-title">경기도</h3>
+                        <p class="card-desc">경기 전역의 종합재활 및 요양병원 정보를 수집 중입니다.</p>
+                        <button class="btn btn-muted btn-block btn-open-request">데이터 오픈 알림 신청</button>
+                    </article>
+
+                    <article class="region-card inactive" data-search-keys="인천 인천광역시 incheon" data-name="인천광역시">
+                        <div class="card-badge badge-preparing">준비 중</div>
+                        <h3 class="card-region-title">인천광역시</h3>
+                        <p class="card-desc">인천 지역 내 재활병원 분포도 및 건강보험 지정 정보 구축 예정.</p>
+                        <button class="btn btn-muted btn-block btn-open-request">데이터 오픈 알림 신청</button>
+                    </article>
+
+                    <article class="region-card inactive" data-search-keys="강원 강원도 강원특별자치도 gangwon" data-name="강원특별자치도">
+                        <div class="card-badge badge-preparing">준비 중</div>
+                        <h3 class="card-region-title">강원특별자치도</h3>
+                        <p class="card-desc">강원 지역 요양 및 재활 병원 정보 데이터베이스 준비 중입니다.</p>
+                        <button class="btn btn-muted btn-block btn-open-request">데이터 오픈 알림 신청</button>
+                    </article>
+
+                    <article class="region-card inactive" data-search-keys="경북 경상북도 gyeongbuk" data-name="경상북도">
+                        <div class="card-badge badge-preparing">준비 중</div>
+                        <h3 class="card-region-title">경상북도</h3>
+                        <p class="card-desc">경북 지역 내 시·군별 전문 재활 의료기관 확보 예정.</p>
+                        <button class="btn btn-muted btn-block btn-open-request">데이터 오픈 알림 신청</button>
+                    </article>
+
+                    <article class="region-card inactive" data-search-keys="충북 충청북도 chungbuk" data-name="충청북도">
+                        <div class="card-badge badge-preparing">준비 중</div>
+                        <h3 class="card-region-title">충청북도</h3>
+                        <p class="card-desc">충청북도 관내 재활의학과 및 요양병원 리스트 수집 예정.</p>
+                        <button class="btn btn-muted btn-block btn-open-request">데이터 오픈 알림 신청</button>
+                    </article>
+
+                    <article class="region-card inactive" data-search-keys="충남 충청남도 chungnam" data-name="충청남도">
+                        <div class="card-badge badge-preparing">준비 중</div>
+                        <h3 class="card-region-title">충청남도</h3>
+                        <p class="card-desc">충청남도 지역별 재활 치료실 및 한방 재활 데이터 수집 예정.</p>
+                        <button class="btn btn-muted btn-block btn-open-request">데이터 오픈 알림 신청</button>
+                    </article>
+
+                    <article class="region-card inactive" data-search-keys="대전 대전광역시 daejeon" data-name="대전광역시">
+                        <div class="card-badge badge-preparing">준비 중</div>
+                        <h3 class="card-region-title">대전광역시</h3>
+                        <p class="card-desc">대전 지역 재활 특화 기관 정보 검색 가이드 구축 예정.</p>
+                        <button class="btn btn-muted btn-block btn-open-request">데이터 오픈 알림 신청</button>
+                    </article>
+
+                    <article class="region-card inactive" data-search-keys="세종 세종시 세종특별자치시 sejong" data-name="세종특별자치시">
+                        <div class="card-badge badge-preparing">준비 중</div>
+                        <h3 class="card-region-title">세종특별자치시</h3>
+                        <p class="card-desc">세종 관내 요양병원 및 통원 재활 클리닉 정보 준비 중.</p>
+                        <button class="btn btn-muted btn-block btn-open-request">데이터 오픈 알림 신청</button>
+                    </article>
+
+                    <article class="region-card inactive" data-search-keys="전북 전북특별자치도 전라북도 jeonbuk" data-name="전북특별자치도">
+                        <div class="card-badge badge-preparing">준비 중</div>
+                        <h3 class="card-region-title">전북특별자치도</h3>
+                        <p class="card-desc">전라북도 관내 전문 입원재활 및 투석 요양 병원 정보 수집 중.</p>
+                        <button class="btn btn-muted btn-block btn-open-request">데이터 오픈 알림 신청</button>
+                    </article>
+
+                    <article class="region-card inactive" data-search-keys="전남 전라남도 jeonnam" data-name="전라남도">
+                        <div class="card-badge badge-preparing">준비 중</div>
+                        <h3 class="card-region-title">전라남도</h3>
+                        <p class="card-desc">전남 남부 및 서부 권역 요양 및 회복기 재활 DB 구축 예정.</p>
+                        <button class="btn btn-muted btn-block btn-open-request">데이터 오픈 알림 신청</button>
+                    </article>
+
+                    <article class="region-card inactive" data-search-keys="제주 제주도 제주특별자치도 jeju" data-name="제주특별자치도">
+                        <div class="card-badge badge-preparing">준비 중</div>
+                        <h3 class="card-region-title">제주특별자치도</h3>
+                        <p class="card-desc">제주도 내 유일 재활 병원 및 요양 케어 센터 안내 예정.</p>
+                        <button class="btn btn-muted btn-block btn-open-request">데이터 오픈 알림 신청</button>
+                    </article>
+                </div>
+                
+                <!-- Search Empty State -->
+                <div id="searchEmptyState" class="empty-state" hidden>
+                    <span aria-hidden="true" class="empty-icon">🔍</span>
+                    <h3>검색된 지역이 없습니다.</h3>
+                    <p>지역명을 올바르게 입력했는지 확인해 보세요.</p>
+                    <button id="btnResetSearch" class="btn btn-secondary">검색 초기화</button>
+                </div>
+            </section>
+        </main>
+
+        <!-- Guardian Guide Section -->
+        <section class="expert-guide-section">
+            <div class="section-title-wrapper">
+                <p class="section-kicker">EXPERT KNOWLEDGE</p>
+                <h2>💡 보호자를 위한 재활 치료 핵심 가이드</h2>
+                <p class="section-lead">올바른 재활병원을 선택하고 준비하기 위한 기본 지식입니다.</p>
+            </div>
+
+            <div class="guide-grid">
+                <article class="guide-card">
+                    <div class="guide-icon">📋</div>
+                    <h3>재활병원 전화 문의 전 준비 사항</h3>
+                    <p>병원의 치료 가능 여부는 환자 상태에 따라 상이하므로, 전화 전에 다음 사항을 미리 메모해 두시면 상담이 훨씬 신속해집니다.</p>
+                    <ul>
+                        <li><strong>치료 대상 정보:</strong> 환자 질환(뇌졸중, 척수 손상, 골절 등) 및 수술일/발병일</li>
+                        <li><strong>현재 환자 상태:</strong> 거동 가능 여부(보행, 휠체어) 및 의료 장비 부착 여부(콧줄, 소변줄 등)</li>
+                        <li><strong>치료 형태:</strong> 집중적인 '입원 치료', 매일 통원하는 '낮병동', 주 2~3회 '외래 치료'</li>
+                        <li><strong>보험 구분:</strong> 건강보험 적용 여부 혹은 산재보험/자동차보험 해당 여부</li>
+                    </ul>
+                </article>
+
+                <article class="guide-card">
+                    <div class="guide-icon">🏥</div>
+                    <h3>일반 요양병원 vs 보건복지부 지정 회복기 재활병원</h3>
+                    <p>치료 목적과 지원 혜택에 따라 알맞은 병원 유형을 선택하셔야 환자의 복귀 속도가 달라집니다.</p>
+                    <ul>
+                        <li><strong>회복기 재활의료기관:</strong> 수술 후 골든타임 내 환자를 대상으로 매일 1대1 집중 재활 치료(일 최대 4시간)와 건강보험 혜택 및 간호간병 통합 서비스를 지원합니다.</li>
+                        <li><strong>재활 요양병원:</strong> 만성적인 의료 관리나 요양이 장기적으로 필요한 환자를 위한 최적의 케어 시스템 및 비교적 저렴한 공동 간병 서비스를 제공합니다.</li>
+                    </ul>
+                </article>
+
+                <article class="guide-card">
+                    <div class="guide-icon">⏱️</div>
+                    <h3>집중 재활치료 입원 골든타임(기한)</h3>
+                    <p>정부 지정 회복기 재활병원에 건강보험 혜택을 받고 입원하기 위해서는 법으로 지정된 기한 내 입원해야 합니다.</p>
+                    <ul>
+                        <li><strong>뇌졸중 / 뇌손상:</strong> 발병 또는 수술 후 <strong>90일 이내</strong> 입원 필수 (치료 기간 최대 180일)</li>
+                        <li><strong>척수 손상:</strong> 발병 또는 수술 후 <strong>180일 이내</strong> 입원 필수 (치료 기간 최대 2년)</li>
+                        <li><strong>고관절 및 대퇴 골절:</strong> 수술 후 <strong>30일 이내</strong> 입원 필수 (치료 기간 최대 30일)</li>
+                        <li><strong>다발 골절 / 하지 절단:</strong> 수술 후 <strong>60일 이내</strong> 입원 필수 (치료 기간 최대 60일)</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p class="footer-copy">© 2026 전국 재활·요양기관 통합 안내 포털. All rights reserved.</p>
+            <p class="footer-meta">본 포털은 심평원(HIRA), 보건복지부, 근로복지공단 공공 데이터를 바탕으로 검증 및 구축되었습니다.</p>
+        </footer>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <!-- Info/Request Modal -->
+    <dialog id="preparingModal" class="preparing-dialog">
+        <div class="dialog-content">
+            <div class="dialog-header">
+                <h3 id="modalTitle">서비스 준비 중</h3>
+                <button id="btnCloseModal" class="btn-close" aria-label="닫기">×</button>
+            </div>
+            <div class="dialog-body">
+                <div class="modal-icon">⏳</div>
+                <p class="modal-main-text">현재 <strong id="modalRegionName" class="highlight-text"></strong> 지역의 재활기관 정보는 데이터를 정밀 분석하고 구축하는 단계입니다.</p>
+                <p class="modal-sub-text">조금만 기다려 주시면 심평원 및 공식 자료의 교차검토가 완료된 고품질의 재활의학과, 요양병원 리스트 서비스를 제공해 드리겠습니다.</p>
+                
+                <div class="open-regions-box">
+                    <h4>💡 지금 즉시 이용 가능한 지역:</h4>
+                    <div class="open-links-grid">
+                        <a href="https://daegupm-r.vercel.app/" target="_blank" rel="noopener" class="open-region-link">대구 ↗</a>
+                        <a href="https://busanpm-r.vercel.app/" target="_blank" rel="noopener" class="open-region-link">부산 ↗</a>
+                        <a href="https://ulsanpm-r.vercel.app/" target="_blank" rel="noopener" class="open-region-link">울산 ↗</a>
+                        <a href="https://gyeongnampm-r.vercel.app/" target="_blank" rel="noopener" class="open-region-link">경남 ↗</a>
+                    </div>
+                </div>
+
+                <div class="request-form">
+                    <label for="requestEmail">오픈 시 이메일 알림 받기 (선택)</label>
+                    <div class="input-group">
+                        <input type="email" id="requestEmail" placeholder="example@email.com">
+                        <button id="btnSubmitRequest" class="btn btn-primary">신청하기</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </dialog>
+
+    <script src="app.js"></script>
+</body>
+</html>
