@@ -164,21 +164,23 @@ document.addEventListener('DOMContentLoaded', () => {
     // --------------------------------------------------------
     // Share Feature
     // --------------------------------------------------------
-    btnShare.addEventListener('click', () => {
-        const shareUrl = window.location.href;
-        
-        if (navigator.clipboard) {
-            navigator.clipboard.writeText(shareUrl)
-                .then(() => {
-                    showToast('포털 링크 주소가 복사되었습니다. 보호자들과 공유해 보세요!');
-                })
-                .catch(() => {
-                    fallbackCopyText(shareUrl);
-                });
-        } else {
-            fallbackCopyText(shareUrl);
-        }
-    });
+    if (btnShare) {
+        btnShare.addEventListener('click', () => {
+            const shareUrl = window.location.href;
+            
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(shareUrl)
+                    .then(() => {
+                        showToast('포털 링크 주소가 복사되었습니다. 보호자들과 공유해 보세요!');
+                    })
+                    .catch(() => {
+                        fallbackCopyText(shareUrl);
+                    });
+            } else {
+                fallbackCopyText(shareUrl);
+            }
+        });
+    }
 
     function fallbackCopyText(text) {
         const textArea = document.createElement('textarea');
