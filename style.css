@@ -465,9 +465,34 @@ a {
     transition: var(--transition);
 }
 
-.map-hotspot.active:hover .hotspot-tag {
-    transform: translateX(-50%) translateY(0px);
+/* Custom Floating Map Labels to cover native PNG text */
+.map-label {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    color: #334155;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 3px 6px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    pointer-events: none; /* Crucial: clicks go through to hotspot underneath */
+    z-index: 5;
+    white-space: nowrap;
+    transition: var(--transition);
+}
+
+.map-label.active {
     background-color: var(--primary);
+    color: #ffffff;
+    border-color: var(--primary-dark);
+    box-shadow: 0 2px 6px rgba(13, 148, 136, 0.2);
+}
+
+/* Hide hotspot tags since we now have map labels visible permanently */
+.hotspot-tag {
+    display: none !important;
 }
 
 /* --- Right Column: Region List --- */
@@ -789,7 +814,7 @@ a {
 
 .open-links-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
     gap: 8px;
 }
 
