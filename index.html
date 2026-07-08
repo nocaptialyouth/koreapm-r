@@ -42,6 +42,9 @@
                 <span class="brand-icon">✚</span>
                 <span class="brand-text">전국 재활·요양기관 안내</span>
             </div>
+            <div class="nav-links">
+                <a href="minibook.html" class="nav-minibook-btn">📋 2주기 인증 미니북</a>
+            </div>
         </nav>
 
         <!-- Header / Hero Section -->
@@ -92,9 +95,9 @@
                         <div class="map-label active" style="left: 85%; top: 65.5%;">울산 ↗</div>
                         <div class="map-label active" style="left: 82.5%; top: 71.5%;">부산 ↗</div>
                         <div class="map-label active" style="left: 66.5%; top: 69.5%;">경남 ↗</div>
-                        <div class="map-label" style="left: 41%; top: 75.5%;">전라광주통합특별시</div>
-                        <div class="map-label" style="left: 14%; top: 93%;">제주특별자치도</div>
-                        <div class="map-label" style="left: 92.5%; top: 22.5%;">울릉도</div>
+                        <div class="map-label active" style="left: 41%; top: 75.5%;">전라광주 ↗</div>
+                        <div class="map-label active" style="left: 14%; top: 93%;">제주 ↗</div>
+                        <div class="map-label active" style="left: 92.5%; top: 22.5%;">울릉도 ↗</div>
 
                         <!-- Map Hotspots (Percentage layout based on reference image) -->
                         
@@ -110,8 +113,8 @@
                         <button class="map-hotspot inactive" style="left: 37.5%; top: 33.5%; width: 8%; height: 3.5%;" data-region="incheon" data-name="인천광역시" aria-label="인천광역시 (준비 중)"></button>
                         <!-- 경기도 -->
                         <button class="map-hotspot inactive" style="left: 46%; top: 34.5%; width: 8%; height: 3.5%;" data-region="gyeonggi" data-name="경기도" aria-label="경기도 (준비 중)"></button>
-                        <!-- 강원특별자치도 -->
-                        <a href="../강원특별자치도_재활기관_검색가이드_공유용/index.html" class="map-hotspot active" style="left: 68.5%; top: 28.5%; width: 14%; height: 4.5%;" data-region="gangwon" data-name="강원특별자치도" aria-label="강원특별자치도 재활기관 바로가기">
+                        <!-- 강원특별자치도 (ACTIVE) -->
+                        <a href="./강원특별자치도_재활기관_검색가이드_공유용/index.html" class="map-hotspot active" style="left: 68.5%; top: 28.5%; width: 14%; height: 4.5%;" data-region="gangwon" data-name="강원특별자치도" aria-label="강원특별자치도 재활기관 바로가기">
                             <span class="pulse-ring"></span>
                         </a>
                         <!-- 충청북도 -->
@@ -131,7 +134,7 @@
                         </a>
                         
                         <!-- 전북특별자치도 (ACTIVE) -->
-                        <a href="../전북특별자치도_재활기관_검색가이드_공유용/index.html" class="map-hotspot active" style="left: 44%; top: 63.5%; width: 14%; height: 4.5%;" data-region="jeonbuk" data-name="전북특별자치도" aria-label="전북특별자치도 재활기관 바로가기">
+                        <a href="./전북특별자치도_재활기관_검색가이드_공유용/index.html" class="map-hotspot active" style="left: 44%; top: 63.5%; width: 14%; height: 4.5%;" data-region="jeonbuk" data-name="전북특별자치도" aria-label="전북특별자치도 재활기관 바로가기">
                             <span class="pulse-ring"></span>
                         </a>
                         
@@ -151,13 +154,17 @@
                         </a>
                         
                         <!-- 전라광주통합특별시 -->
-                        <button class="map-hotspot inactive" style="left: 41%; top: 75.5%; width: 10%; height: 4%;" data-region="jeonnam" data-name="전라광주통합특별시" aria-label="전라광주통합특별시 (준비 중)"></button>
-                        <!-- 제주특별자치도 (ACTIVE) -->
-                        <a href="../제주특별자치도_재활기관_검색가이드_공유용/index.html" class="map-hotspot active" style="left: 14%; top: 93%; width: 15%; height: 4.5%;" data-region="jeju" data-name="제주특별자치도" aria-label="제주특별자치도 재활기관 바로가기">
+                        <a href="./전라광주특별시_재활기관_검색가이드_공유용/index.html" class="map-hotspot active" style="left: 41%; top: 75.5%; width: 10%; height: 4%;" data-region="jeonnam" data-name="전라광주통합특별시" aria-label="전라광주통합특별시 재활기관 바로가기">
                             <span class="pulse-ring"></span>
                         </a>
-                        <!-- 울릉도 -->
-                        <button class="map-hotspot inactive" style="left: 92.5%; top: 22.5%; width: 8%; height: 3.5%;" data-region="ulleung" data-name="울릉도" aria-label="울릉도 (준비 중)"></button>
+                        <!-- 제주특별자치도 (ACTIVE) -->
+                        <a href="./제주특별자치도_재활기관_검색가이드_공유용/index.html" class="map-hotspot active" style="left: 14%; top: 93%; width: 15%; height: 4.5%;" data-region="jeju" data-name="제주특별자치도" aria-label="제주특별자치도 재활기관 바로가기">
+                            <span class="pulse-ring"></span>
+                        </a>
+                        <!-- 울릉도 (ACTIVE - 경북 연동) -->
+                        <a href="https://gyeongbukpm-r.vercel.app/" target="_blank" rel="noopener" class="map-hotspot active" style="left: 92.5%; top: 22.5%; width: 8%; height: 3.5%;" data-region="ulleung" data-name="울릉도" aria-label="울릉도 재활기관 바로가기">
+                            <span class="pulse-ring"></span>
+                        </a>
                     </div>
                 </div>
             </section>
@@ -166,7 +173,7 @@
             <section class="region-list-section" aria-label="지역별 서비스 목록">
                 <div class="list-header">
                     <h2>🏢 지역별 서비스 목록</h2>
-                    <p class="list-count"><strong id="activeCount">7</strong>개 지역 운영 중</p>
+                    <p class="list-count"><strong id="activeCount">9</strong>개 지역 운영 중</p>
                 </div>
                 
                 <div class="regions-grid" id="regionsGrid">
@@ -243,7 +250,7 @@
                         <div class="card-meta">
                             <span>보건복지부 지정 회복기 재활병원 포함</span>
                         </div>
-                        <a href="../강원특별자치도_재활기관_검색가이드_공유용/index.html" class="btn btn-primary btn-block">강원 재활기관 찾기 ↗</a>
+                        <a href="https://gangwonstatepm-r.vercel.app/" target="_blank" rel="noopener" class="btn btn-primary btn-block">강원 재활기관 찾기 ↗</a>
                     </article>
 
                     <article class="region-card active" data-search-keys="경북 경상북도 gyeongbuk 포항 구미 경산 안동 영주 경주" data-name="경상북도">
@@ -284,14 +291,17 @@
                         <div class="card-meta">
                             <span>보건복지부 지정 회복기 재활병원 포함</span>
                         </div>
-                        <a href="../전북특별자치도_재활기관_검색가이드_공유용/index.html" class="btn btn-primary btn-block">전북 재활기관 찾기 ↗</a>
+                        <a href="./전북특별자치도_재활기관_검색가이드_공유용/index.html" class="btn btn-primary btn-block">전북 재활기관 찾기 ↗</a>
                     </article>
 
-                    <article class="region-card inactive" data-search-keys="전남 전라남도 광주 광주광역시 전라광주통합특별시 jeonnam gwangju" data-name="전라광주통합특별시">
-                        <div class="card-badge badge-preparing">준비 중</div>
+                    <article class="region-card active" data-search-keys="전남 전라남도 광주 광주광역시 전라광주통합특별시 jeonnam gwangju" data-name="전라광주통합특별시">
+                        <div class="card-badge badge-active">서비스 중</div>
                         <h3 class="card-region-title">전라광주통합특별시</h3>
-                        <p class="card-desc">광주 및 전남 전역의 요양 및 회복기 재활 DB 구축 예정.</p>
-                        <button class="btn btn-muted btn-block btn-open-request">데이터 오픈 알림 신청</button>
+                        <p class="card-desc">광주365재활병원, 호남권역재활병원, 우암병원(회복기 지정) 및 전라·광주 관내 30개 전문 재활기관 정보 검색.</p>
+                        <div class="card-meta">
+                            <span>보건복지부 회복기 / 산재 재활인증 병원 포함</span>
+                        </div>
+                        <a href="./전라광주특별시_재활기관_검색가이드_공유용/index.html" class="btn btn-primary btn-block">전라광주 재활기관 찾기 ↗</a>
                     </article>
 
                     <article class="region-card active" data-search-keys="제주 제주도 제주특별자치도 jeju" data-name="제주특별자치도">
@@ -301,7 +311,7 @@
                         <div class="card-meta">
                             <span>보건복지부 지정 회복기 재활병원 포함</span>
                         </div>
-                        <a href="../제주특별자치도_재활기관_검색가이드_공유용/index.html" class="btn btn-primary btn-block">제주 재활기관 찾기 ↗</a>
+                        <a href="https://jejupm-r.vercel.app/" target="_blank" rel="noopener" class="btn btn-primary btn-block">제주 재활기관 찾기 ↗</a>
                     </article>
                 </div>
                 
@@ -390,8 +400,10 @@
                             <a href="https://busanpm-r.vercel.app/" target="_blank" rel="noopener" class="open-region-link">부산 ↗</a>
                             <a href="https://ulsanpm-r.vercel.app/" target="_blank" rel="noopener" class="open-region-link">울산 ↗</a>
                             <a href="https://gyeongnampm-r.vercel.app/" target="_blank" rel="noopener" class="open-region-link">경남 ↗</a>
-                            <a href="../강원특별자치도_재활기관_검색가이드_공유용/index.html" target="_blank" rel="noopener" class="open-region-link">강원 ↗</a>
-                            <a href="../전북특별자치도_재활기관_검색가이드_공유용/index.html" class="open-region-link">전북 ↗</a>
+                            <a href="./강원특별자치도_재활기관_검색가이드_공유용/index.html" class="open-region-link">강원 ↗</a>
+                            <a href="./전라광주특별시_재활기관_검색가이드_공유용/index.html" class="open-region-link">전라광주 ↗</a>
+                            <a href="./전북특별자치도_재활기관_검색가이드_공유용/index.html" class="open-region-link">전북 ↗</a>
+                            <a href="./제주특별자치도_재활기관_검색가이드_공유용/index.html" class="open-region-link">제주 ↗</a>
                         </div>
                 </div>
 
