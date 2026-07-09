@@ -77,16 +77,16 @@
                         
                         <!-- Map Labels (Floating badges covering the native PNG text) -->
                         <!-- 수도권 확대 지도 (Top-Left Inset) -->
-                        <div class="map-label" style="left: 17.5%; top: 19.5%;">서울특별시</div>
-                        <div class="map-label" style="left: 7.5%; top: 23%;">인천광역시</div>
-                        <div class="map-label" style="left: 20%; top: 24.5%;">경기도</div>
+                        <div class="map-label active" style="left: 17.5%; top: 19.5%;">서울특별시 ↗</div>
+                        <div class="map-label active" style="left: 7.5%; top: 23%;">인천광역시 ↗</div>
+                        <div class="map-label active" style="left: 20%; top: 24.5%;">경기도 ↗</div>
 
                         <!-- 메인 지도 본문 -->
-                        <div class="map-label" style="left: 43.5%; top: 30.2%;">서울특별시</div>
-                        <div class="map-label" style="left: 37.5%; top: 33.5%;">인천광역시</div>
-                        <div class="map-label" style="left: 46%; top: 34.5%;">경기도</div>
+                        <div class="map-label active" style="left: 43.5%; top: 30.2%;">서울특별시 ↗</div>
+                        <div class="map-label active" style="left: 37.5%; top: 33.5%;">인천광역시 ↗</div>
+                        <div class="map-label active" style="left: 46%; top: 34.5%;">경기도 ↗</div>
                         <div class="map-label active" style="left: 68.5%; top: 28.5%;">강원특별자치도 ↗</div>
-                        <div class="map-label" style="left: 62.5%; top: 41.5%;">충청북도</div>
+                        <div class="map-label active" style="left: 62.5%; top: 41.5%;">충청북도 ↗</div>
                         <div class="map-label active" style="left: 48%; top: 45.5%;">세종특별자치시 ↗</div>
                         <div class="map-label active" style="left: 35%; top: 52%;">충남대전통합특별시 ↗</div>
                         <div class="map-label active" style="left: 75.5%; top: 52%;">경상북도 ↗</div>
@@ -102,23 +102,37 @@
                         <!-- Map Hotspots (Percentage layout based on reference image) -->
                         
                         <!-- 수도권 확대 지도 (Top-Left Inset Box) -->
-                        <button class="map-hotspot inactive" style="left: 17.5%; top: 19.5%; width: 9%; height: 3.5%;" data-region="seoul" data-name="서울특별시" aria-label="서울특별시 (준비 중)"></button>
-                        <button class="map-hotspot inactive" style="left: 7.5%; top: 23%; width: 9%; height: 3.5%;" data-region="incheon" data-name="인천광역시" aria-label="인천광역시 (준비 중)"></button>
-                        <button class="map-hotspot inactive" style="left: 20%; top: 24.5%; width: 9%; height: 3.5%;" data-region="gyeonggi" data-name="경기도" aria-label="경기도 (준비 중)"></button>
+                        <a href="https://seoulpm-r.vercel.app/" target="_blank" rel="noopener" class="map-hotspot active" style="left: 17.5%; top: 19.5%; width: 9%; height: 3.5%;" data-region="seoul" data-name="서울특별시" aria-label="서울특별시 재활기관 바로가기">
+                            <span class="pulse-ring"></span>
+                        </a>
+                        <a href="https://incheonpm-r.vercel.app/" target="_blank" rel="noopener" class="map-hotspot active" style="left: 7.5%; top: 23%; width: 9%; height: 3.5%;" data-region="incheon" data-name="인천광역시" aria-label="인천광역시 재활기관 바로가기">
+                            <span class="pulse-ring"></span>
+                        </a>
+                        <a href="https://gyeonggidopm-r.vercel.app/" target="_blank" rel="noopener" class="map-hotspot active" style="left: 20%; top: 24.5%; width: 9%; height: 3.5%;" data-region="gyeonggi" data-name="경기도" aria-label="경기도 재활기관 바로가기">
+                            <span class="pulse-ring"></span>
+                        </a>
 
                         <!-- 메인 지도 본문 (Main Map Area) -->
                         <!-- 서울특별시 -->
-                        <button class="map-hotspot inactive" style="left: 43.5%; top: 30.2%; width: 8%; height: 3.5%;" data-region="seoul" data-name="서울특별시" aria-label="서울특별시 (준비 중)"></button>
+                        <a href="https://seoulpm-r.vercel.app/" target="_blank" rel="noopener" class="map-hotspot active" style="left: 43.5%; top: 30.2%; width: 8%; height: 3.5%;" data-region="seoul" data-name="서울특별시" aria-label="서울특별시 재활기관 바로가기">
+                            <span class="pulse-ring"></span>
+                        </a>
                         <!-- 인천광역시 -->
-                        <button class="map-hotspot inactive" style="left: 37.5%; top: 33.5%; width: 8%; height: 3.5%;" data-region="incheon" data-name="인천광역시" aria-label="인천광역시 (준비 중)"></button>
+                        <a href="https://incheonpm-r.vercel.app/" target="_blank" rel="noopener" class="map-hotspot active" style="left: 37.5%; top: 33.5%; width: 8%; height: 3.5%;" data-region="incheon" data-name="인천광역시" aria-label="인천광역시 재활기관 바로가기">
+                            <span class="pulse-ring"></span>
+                        </a>
                         <!-- 경기도 -->
-                        <button class="map-hotspot inactive" style="left: 46%; top: 34.5%; width: 8%; height: 3.5%;" data-region="gyeonggi" data-name="경기도" aria-label="경기도 (준비 중)"></button>
+                        <a href="https://gyeonggidopm-r.vercel.app/" target="_blank" rel="noopener" class="map-hotspot active" style="left: 46%; top: 34.5%; width: 8%; height: 3.5%;" data-region="gyeonggi" data-name="경기도" aria-label="경기도 재활기관 바로가기">
+                            <span class="pulse-ring"></span>
+                        </a>
                         <!-- 강원특별자치도 (ACTIVE) -->
                         <a href="https://gangwonstatepm-r.vercel.app/" target="_blank" rel="noopener" class="map-hotspot active" style="left: 68.5%; top: 28.5%; width: 14%; height: 4.5%;" data-region="gangwon" data-name="강원특별자치도" aria-label="강원특별자치도 재활기관 바로가기">
                             <span class="pulse-ring"></span>
                         </a>
-                        <!-- 충청북도 -->
-                        <button class="map-hotspot inactive" style="left: 62.5%; top: 41.5%; width: 10%; height: 4%;" data-region="chungbuk" data-name="충청북도" aria-label="충청북도 (준비 중)"></button>
+                        <!-- 충청북도 (ACTIVE) -->
+                        <a href="https://chungbukpm-r.vercel.app/" target="_blank" rel="noopener" class="map-hotspot active" style="left: 62.5%; top: 41.5%; width: 10%; height: 4%;" data-region="chungbuk" data-name="충청북도" aria-label="충청북도 재활기관 바로가기">
+                            <span class="pulse-ring"></span>
+                        </a>
                         <!-- 충남대전통합특별시 (ACTIVE) -->
                         <a href="https://chungnamdaejeonpm-r.vercel.app/" target="_blank" rel="noopener" class="map-hotspot active" style="left: 35%; top: 52%; width: 10%; height: 4%;" data-region="chungnam" data-name="충남대전통합특별시" aria-label="충남대전통합특별시 재활기관 바로가기">
                             <span class="pulse-ring"></span>
@@ -177,7 +191,7 @@
             <section class="region-list-section" aria-label="지역별 서비스 목록">
                 <div class="list-header">
                     <h2>🏢 지역별 서비스 목록</h2>
-                    <p class="list-count"><strong id="activeCount">11</strong>개 지역 운영 중</p>
+                    <p class="list-count"><strong id="activeCount">15</strong>개 지역 운영 중</p>
                 </div>
                 
                 <div class="regions-grid" id="regionsGrid">
@@ -225,26 +239,34 @@
                         <a href="https://gyeongnampm-r.vercel.app/" target="_blank" rel="noopener" class="btn btn-primary btn-block">경남 재활기관 찾기 ↗</a>
                     </article>
 
-                    <!-- Inactive Regions (For scaling) -->
-                    <article class="region-card inactive" data-search-keys="서울 서울특별시 seoul" data-name="서울특별시">
-                        <div class="card-badge badge-preparing">준비 중</div>
+                    <article class="region-card active" data-search-keys="서울 서울특별시 seoul 종로구 중구 용산구 성동구 광진구 동대문구 중랑구 성북구 강북구 도봉구 노원구 은평구 서대문구 마포구 양천구 강서구 구로구 금천구 영등포구 동작구 관악구 서초구 강남구 송파구 강동구" data-name="서울특별시">
+                        <div class="card-badge badge-active">서비스 중</div>
                         <h3 class="card-region-title">서울특별시</h3>
-                        <p class="card-desc">서울 지역 재활 병원 및 요양기관 데이터베이스 구축을 진행하고 있습니다.</p>
-                        <button class="btn btn-muted btn-block btn-open-request">데이터 오픈 알림 신청</button>
+                        <p class="card-desc">서울 내 25개 자치구 재활의학과 전문의 상주, 보건복지부 지정 회복기 지정 병원 및 산재/자보 적용 기관 데이터가 연동되어 있습니다.</p>
+                        <div class="card-meta">
+                            <span>보건복지부 제3기 지정 회복기 재활병원 포함</span>
+                        </div>
+                        <a href="https://seoulpm-r.vercel.app/" target="_blank" rel="noopener" class="btn btn-primary btn-block">서울 재활기관 찾기 ↗</a>
                     </article>
 
-                    <article class="region-card inactive" data-search-keys="경기 경기도 gyeonggi" data-name="경기도">
-                        <div class="card-badge badge-preparing">준비 중</div>
+                    <article class="region-card active" data-search-keys="경기 경기도 gyeonggi 수원 고양 성남 용인 부천 안산 남양주 안양 화성 평택 의정부 파주 김포 광명 군포 광주 이천 양주 안성 구리 의왕 포천 하남 동두천 과천 여주 양평 가평 연천" data-name="경기도">
+                        <div class="card-badge badge-active">서비스 중</div>
                         <h3 class="card-region-title">경기도</h3>
-                        <p class="card-desc">경기 전역의 종합재활 및 요양병원 정보를 수집 중입니다.</p>
-                        <button class="btn btn-muted btn-block btn-open-request">데이터 오픈 알림 신청</button>
+                        <p class="card-desc">수원, 고양, 성남, 용인 등 경기도 29개 시·군 지역 내 최적의 재활 치료실 보유 병원 검색.</p>
+                        <div class="card-meta">
+                            <span>보건복지부 지정 회복기 재활병원 포함</span>
+                        </div>
+                        <a href="https://gyeonggidopm-r.vercel.app/" target="_blank" rel="noopener" class="btn btn-primary btn-block">경기도 재활기관 찾기 ↗</a>
                     </article>
 
-                    <article class="region-card inactive" data-search-keys="인천 인천광역시 incheon" data-name="인천광역시">
-                        <div class="card-badge badge-preparing">준비 중</div>
+                    <article class="region-card active" data-search-keys="인천 인천광역시 incheon 부평 남동 연수 미추홀 계양 서구 중구" data-name="인천광역시">
+                        <div class="card-badge badge-active">서비스 중</div>
                         <h3 class="card-region-title">인천광역시</h3>
-                        <p class="card-desc">인천 지역 내 재활병원 분포도 및 건강보험 지정 정보 구축 예정.</p>
-                        <button class="btn btn-muted btn-block btn-open-request">데이터 오픈 알림 신청</button>
+                        <p class="card-desc">부평, 남동, 연수 등 인천 10개 군·구 지역 내 최적의 재활 치료실 보유 병원 검색.</p>
+                        <div class="card-meta">
+                            <span>보건복지부 지정 회복기 재활병원 포함</span>
+                        </div>
+                        <a href="https://incheonpm-r.vercel.app/" target="_blank" rel="noopener" class="btn btn-primary btn-block">인천 재활기관 찾기 ↗</a>
                     </article>
 
                     <article class="region-card active" data-search-keys="강원 강원도 강원특별자치도 gangwon 춘천 원주 강릉" data-name="강원특별자치도">
@@ -267,11 +289,14 @@
                         <a href="https://gyeongbukpm-r.vercel.app/" target="_blank" rel="noopener" class="btn btn-primary btn-block">경북 재활기관 찾기 ↗</a>
                     </article>
 
-                    <article class="region-card inactive" data-search-keys="충북 충청북도 chungbuk" data-name="충청북도">
-                        <div class="card-badge badge-preparing">준비 중</div>
+                    <article class="region-card active" data-search-keys="충북 충청북도 chungbuk 청주 충주 제천 진천 음성 증평 괴산 보은 옥천 영동 단양" data-name="충청북도">
+                        <div class="card-badge badge-active">서비스 중</div>
                         <h3 class="card-region-title">충청북도</h3>
-                        <p class="card-desc">충청북도 관내 재활의학과 및 요양병원 리스트 수집 예정.</p>
-                        <button class="btn btn-muted btn-block btn-open-request">데이터 오픈 알림 신청</button>
+                        <p class="card-desc">청주, 충주, 제천 등 충청북도 11개 시·군 내 최적의 재활 치료실 보유 병원 검색.</p>
+                        <div class="card-meta">
+                            <span>보건복지부 지정 회복기 재활병원 포함</span>
+                        </div>
+                        <a href="https://chungbukpm-r.vercel.app/" target="_blank" rel="noopener" class="btn btn-primary btn-block">충북 재활기관 찾기 ↗</a>
                     </article>
 
                     <article class="region-card active" data-search-keys="충남 충청남도 대전 대전광역시 충남대전통합특별시 chungnam daejeon" data-name="충남대전통합특별시">
@@ -416,6 +441,10 @@
                             <a href="https://chungnamdaejeonpm-r.vercel.app/" target="_blank" rel="noopener" class="open-region-link">충남대전 ↗</a>
                             <a href="https://jeonnamgwangjupm-r.vercel.app/" target="_blank" rel="noopener" class="open-region-link">전라광주 ↗</a>
                             <a href="https://jeonbukpm-r.vercel.app/" target="_blank" rel="noopener" class="open-region-link">전북 ↗</a>
+                            <a href="https://seoulpm-r.vercel.app/" target="_blank" rel="noopener" class="open-region-link">서울 ↗</a>
+                            <a href="https://incheonpm-r.vercel.app/" target="_blank" rel="noopener" class="open-region-link">인천 ↗</a>
+                            <a href="https://gyeonggidopm-r.vercel.app/" target="_blank" rel="noopener" class="open-region-link">경기 ↗</a>
+                            <a href="https://chungbukpm-r.vercel.app/" target="_blank" rel="noopener" class="open-region-link">충북 ↗</a>
                         </div>
                 </div>
 
