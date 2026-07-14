@@ -1,4 +1,4 @@
-﻿/**
+/**
  * portal-data.js
  * 포털 마스터 데이터 파일
  * 
@@ -70,7 +70,7 @@ window.PORTAL_DATA = {
     {
       id: "daegu",
       name: "대구광역시",
-      url: "https://daegu.koreapmr.com/",
+      url: "https://daegupm-r.vercel.app/",
       status: "active",
       count: 78,
       searchKeys: "대구 대구광역시 daegu",
@@ -81,7 +81,7 @@ window.PORTAL_DATA = {
     {
       id: "busan",
       name: "부산광역시",
-      url: "https://busan.koreapmr.com/",
+      url: "https://busanpm-r.vercel.app/",
       status: "active",
       count: 146,
       searchKeys: "부산 부산광역시 busan",
@@ -92,7 +92,7 @@ window.PORTAL_DATA = {
     {
       id: "ulsan",
       name: "울산광역시",
-      url: "https://ulsan.koreapmr.com/",
+      url: "https://ulsanpm-r.vercel.app/",
       status: "active",
       count: 52,
       searchKeys: "울산 울산광역시 ulsan",
@@ -103,7 +103,7 @@ window.PORTAL_DATA = {
     {
       id: "gyeongnam",
       name: "경상남도",
-      url: "https://gyeongnam.koreapmr.com/",
+      url: "https://gyeongnampm-r.vercel.app/",
       status: "active",
       count: 95,
       searchKeys: "경남 경상남도 gyeongnam 창원 김해 양산 진주",
@@ -114,7 +114,7 @@ window.PORTAL_DATA = {
     {
       id: "seoul",
       name: "서울특별시",
-      url: "https://seoul.koreapmr.com/",
+      url: "https://seoulpm-r.vercel.app/",
       status: "active",
       count: 120,
       searchKeys: "서울 서울특별시 seoul 종로구 중구 용산구 성동구 광진구 동대문구 중랑구 성북구 강북구 도봉구 노원구 은평구 서대문구 마포구 양천구 강서구 구로구 금천구 영등포구 동작구 관악구 서초구 강남구 송파구 강동구",
@@ -125,7 +125,7 @@ window.PORTAL_DATA = {
     {
       id: "gyeonggi",
       name: "경기도",
-      url: "https://gyeonggido.koreapmr.com/",
+      url: "https://gyeonggidopm-r.vercel.app/",
       status: "active",
       count: 200,
       searchKeys: "경기 경기도 gyeonggi 수원 고양 성남 용인 부천 안산 남양주 안양 화성 평택 의정부 파주 김포 광명 군포 광주 이천 양주 안성 구리 의왕 포천 하남 동두천 과천 여주 양평 가평 연천",
@@ -136,7 +136,7 @@ window.PORTAL_DATA = {
     {
       id: "incheon",
       name: "인천광역시",
-      url: "https://incheon.koreapmr.com/",
+      url: "https://incheonpm-r.vercel.app/",
       status: "active",
       count: 63,
       searchKeys: "인천 인천광역시 incheon 부평 남동 연수 미추홀 계양 서구 중구",
@@ -147,7 +147,7 @@ window.PORTAL_DATA = {
     {
       id: "gangwon",
       name: "강원특별자치도",
-      url: "https://gangwonstate.koreapmr.com/",
+      url: "https://gangwonstatepm-r.vercel.app/",
       status: "active",
       count: 45,
       searchKeys: "강원 강원도 강원특별자치도 gangwon 춘천 원주 강릉",
@@ -158,7 +158,7 @@ window.PORTAL_DATA = {
     {
       id: "gyeongbuk",
       name: "경상북도",
-      url: "https://gyeongbuk.koreapmr.com/",
+      url: "https://gyeongbukpm-r.vercel.app/",
       status: "active",
       count: 88,
       searchKeys: "경북 경상북도 gyeongbuk 포항 구미 경산 안동 영주 경주",
@@ -169,7 +169,7 @@ window.PORTAL_DATA = {
     {
       id: "chungbuk",
       name: "충청북도",
-      url: "https://chungbuk.koreapmr.com/",
+      url: "https://chungbukpm-r.vercel.app/",
       status: "active",
       count: 41,
       searchKeys: "충북 충청북도 chungbuk 청주 충주 제천 진천 음성 증평 괴산 보은 옥천 영동 단양",
@@ -180,7 +180,7 @@ window.PORTAL_DATA = {
     {
       id: "chungnam",
       name: "충남대전통합특별시",
-      url: "https://chungnamdaejeon.koreapmr.com/",
+      url: "https://chungnamdaejeonpm-r.vercel.app/",
       status: "active",
       count: 70,
       searchKeys: "충남 충청남도 대전 대전광역시 충남대전통합특별시 chungnam daejeon",
@@ -191,7 +191,7 @@ window.PORTAL_DATA = {
     {
       id: "sejong",
       name: "세종특별자치시",
-      url: "https://sejong.koreapmr.com/",
+      url: "https://sejongpm-r.vercel.app/",
       status: "active",
       count: 18,
       searchKeys: "세종 세종시 세종특별자치시 sejong",
@@ -202,7 +202,7 @@ window.PORTAL_DATA = {
     {
       id: "jeonbuk",
       name: "전북특별자치도",
-      url: "https://jeonbuk.koreapmr.com/",
+      url: "https://jeonbukpm-r.vercel.app/",
       status: "active",
       count: 55,
       searchKeys: "전북 전북특별자치도 전라북도 jeonbuk",
@@ -213,7 +213,7 @@ window.PORTAL_DATA = {
     {
       id: "jeonnam",
       name: "전라광주통합특별시",
-      url: "https://jeonnamgwangju.koreapmr.com/",
+      url: "https://jeonnamgwangjupm-r.vercel.app/",
       status: "active",
       count: 62,
       searchKeys: "전남 전라남도 광주 광주광역시 전라광주통합특별시 jeonnam gwangju",
@@ -224,7 +224,7 @@ window.PORTAL_DATA = {
     {
       id: "jeju",
       name: "제주특별자치도",
-      url: "https://jeju.koreapmr.com/",
+      url: "https://jejupm-r.vercel.app/",
       status: "active",
       count: 22,
       searchKeys: "제주 제주도 제주특별자치도 jeju",
