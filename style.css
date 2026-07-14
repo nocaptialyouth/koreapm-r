@@ -265,7 +265,7 @@ a {
     align-items: start;
     max-width: var(--max-width);
     margin: 0 auto;
-    padding: 0 16px;
+    padding: 0 24px;
 }
 
 /* Right column: News aside panel */
@@ -578,39 +578,6 @@ a {
 /* Hide hotspot tags since we now have map labels visible permanently */
 .hotspot-tag {
     display: none !important;
-}
-
-/* Mobile region button list (shown below map on small screens) */
-.mobile-region-list {
-    display: none;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 16px;
-    padding: 12px;
-    background: var(--bg-secondary);
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--border);
-}
-.mobile-region-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 8px 14px;
-    background: var(--bg-card);
-    border: 1.5px solid var(--primary);
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--primary-dark);
-    text-decoration: none;
-    transition: var(--transition);
-    white-space: nowrap;
-}
-.mobile-region-btn:hover,
-.mobile-region-btn:active {
-    background: var(--primary);
-    color: #fff;
-    transform: translateY(-1px);
 }
 
 /* --- Right Column: Region List --- */
@@ -1130,17 +1097,13 @@ a {
 .news-card {
     display: flex;
     align-items: flex-start;
-    gap: 10px;
+    gap: 14px;
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: var(--radius-sm);
-    padding: 14px 16px;
+    padding: 14px 18px;
     transition: var(--transition);
     animation: newsSlideIn 0.4s ease both;
-    /* 핵심: 너비가 없어도 내부 텍스트가 세로로 깨지지 않도록 */
-    min-width: 0;
-    word-break: keep-all;
-    overflow-wrap: break-word;
 }
 .news-card:hover {
     border-color: var(--primary);
@@ -1153,31 +1116,24 @@ a {
 }
 .news-badge {
     flex-shrink: 0;
-    padding: 3px 8px;
+    padding: 3px 9px;
     border-radius: 999px;
     font-size: 11px;
     font-weight: 800;
     white-space: nowrap;
     margin-top: 2px;
-    align-self: flex-start;
 }
 .news-badge.open    { background: #d1fae5; color: #065f46; }
 .news-badge.update  { background: #dbeafe; color: #1e40af; }
 .news-badge.notice  { background: #fef3c7; color: #92400e; }
 .news-badge.warning { background: #fee2e2; color: #991b1b; }
-.news-body {
-    flex: 1;
-    min-width: 0;  /* flex child 텍스트 overflow 방지 핵심 */
-    overflow: hidden;
-}
+.news-body { flex: 1; min-width: 0; }
 .news-title {
     font-size: 13.5px;
     font-weight: 700;
     color: var(--text-main);
     margin-bottom: 4px;
-    line-height: 1.45;
-    word-break: keep-all;
-    overflow-wrap: break-word;
+    line-height: 1.4;
 }
 .news-desc {
     font-size: 12px;
@@ -1187,7 +1143,6 @@ a {
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-    word-break: keep-all;
 }
 .news-date {
     flex-shrink: 0;
@@ -1195,7 +1150,6 @@ a {
     color: var(--text-muted);
     margin-top: 2px;
     white-space: nowrap;
-    align-self: flex-start;
 }
 
 /* --------------------------------------------------------
@@ -1294,12 +1248,11 @@ a {
     .hero-news-wrapper {
         grid-template-columns: 1fr;
         gap: 0;
-        padding: 0 12px;
     }
     .hero-news-aside {
         position: static;
         max-height: none;
-        margin: 0 0 20px;
+        margin: 0 0 24px;
         border-radius: var(--radius-sm);
     }
     .hero-section {
