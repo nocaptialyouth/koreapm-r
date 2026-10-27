@@ -2307,3 +2307,424 @@ body.dark-theme .hotline-pill {
     margin: 0;
     word-break: keep-all;
 }
+
+
+/* ============================================================
+   [v3.0 자동 최신화 배지 & 애드센스 E-E-A-T 신규 섹션 스타일]
+   ============================================================ */
+
+/* 최신 소식 자동 최신화 연동 배지 */
+.news-header-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 4px;
+}
+
+.news-auto-sync-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    font-weight: 800;
+    color: #065f46;
+    background: #d1fae5;
+    border: 1px solid #6ee7b7;
+    padding: 3px 9px;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+
+body.dark-theme .news-auto-sync-badge {
+    background: rgba(16, 185, 129, 0.2);
+    color: #6ee7b7;
+    border-color: rgba(16, 185, 129, 0.4);
+}
+
+/* 칼럼 카드 내 인라인 본문 펼치기 (구글 애드센스 크롤러 인덱싱 & 보호자 즉시 열람용) */
+.column-inline-details {
+    margin-top: 12px;
+    border-top: 1px dashed var(--border);
+    padding-top: 10px;
+}
+
+.column-inline-summary {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--primary);
+    cursor: pointer;
+    user-select: none;
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.column-inline-summary::-webkit-details-marker {
+    display: none;
+}
+
+.column-inline-summary:hover {
+    text-decoration: underline;
+}
+
+.column-inline-body {
+    margin-top: 10px;
+    padding: 12px 14px;
+    background: var(--bg-secondary);
+    border-radius: 10px;
+    font-size: 13px;
+    color: var(--text-main);
+    line-height: 1.65;
+    max-height: 280px;
+    overflow-y: auto;
+}
+
+.column-inline-body h3 {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--primary-dark);
+    margin: 10px 0 6px;
+}
+
+.column-inline-body h3:first-child {
+    margin-top: 0;
+}
+
+.column-inline-body p,
+.column-inline-body ul,
+.column-inline-body ol {
+    margin-bottom: 8px;
+}
+
+.column-inline-body ul,
+.column-inline-body ol {
+    padding-left: 18px;
+}
+
+/* 환자 시기별 표준 재활 로드맵 & 행정 타임라인 */
+.roadmap-section {
+    margin: 56px 0 36px;
+    width: 100%;
+    border-top: 1px solid var(--border);
+    padding-top: 48px;
+}
+
+.roadmap-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+@media (max-width: 820px) {
+    .roadmap-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.roadmap-step-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: var(--transition);
+}
+
+.roadmap-step-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.roadmap-step-card.highlight {
+    border: 1.5px solid var(--primary);
+    background: linear-gradient(135deg, rgba(204, 251, 241, 0.16) 0%, var(--bg-card) 100%);
+}
+
+.roadmap-step-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.roadmap-step-num {
+    background: var(--primary);
+    color: #ffffff;
+    font-size: 11.5px;
+    font-weight: 900;
+    padding: 4px 10px;
+    border-radius: 999px;
+    letter-spacing: 0.04em;
+}
+
+.roadmap-period {
+    font-size: 12.5px;
+    font-weight: 800;
+    color: var(--primary-dark);
+}
+
+.roadmap-step-card h3 {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--text-main);
+    margin: 0;
+}
+
+.roadmap-step-card p {
+    font-size: 13.5px;
+    color: var(--text-muted);
+    line-height: 1.55;
+    margin: 0;
+}
+
+.roadmap-action-list {
+    list-style: none;
+    padding: 12px 0 0;
+    margin: auto 0 0;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-main);
+    line-height: 1.5;
+}
+
+.roadmap-action-list li {
+    position: relative;
+    padding-left: 16px;
+}
+
+.roadmap-action-list li::before {
+    content: '✔';
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+    font-weight: 900;
+    font-size: 11px;
+}
+
+/* 보호자 필수 재활 의학·보험 용어 사전 */
+.glossary-section {
+    margin: 50px 0 20px;
+    width: 100%;
+    border-top: 1px solid var(--border);
+    padding-top: 48px;
+}
+
+.glossary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+@media (max-width: 960px) {
+    .glossary-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 620px) {
+    .glossary-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.glossary-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 20px;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: var(--transition);
+}
+
+.glossary-card:hover {
+    border-color: var(--primary);
+    box-shadow: var(--shadow-md);
+}
+
+.glossary-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.glossary-term {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--text-main);
+}
+
+.glossary-badge {
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--primary-dark);
+    background: #ccfbf1;
+    padding: 3px 8px;
+    border-radius: 6px;
+    white-space: nowrap;
+}
+
+body.dark-theme .glossary-badge {
+    background: rgba(20, 184, 166, 0.2);
+    color: #5eead4;
+}
+
+.glossary-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* 공공데이터 검증 원칙 및 편집 윤리 고지 (E-E-A-T Editorial Policy) */
+.editorial-policy-section {
+    margin: 48px 0 24px;
+    width: 100%;
+}
+
+.editorial-policy-box {
+    background: linear-gradient(135deg, #f8fafc 0%, #f0fdfa 100%);
+    border: 1px solid var(--border);
+    border-left: 5px solid var(--primary);
+    border-radius: var(--radius-md);
+    padding: 26px 28px;
+    box-shadow: var(--shadow-sm);
+}
+
+body.dark-theme .editorial-policy-box {
+    background: linear-gradient(135deg, #0f172a 0%, #132a2e 100%);
+}
+
+.editorial-badge-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.editorial-badge {
+    font-size: 11.5px;
+    font-weight: 800;
+    color: #ffffff;
+    background: #0f766e;
+    padding: 4px 10px;
+    border-radius: 999px;
+}
+
+.editorial-sub {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+.editorial-policy-box h3 {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text-main);
+    margin-bottom: 16px;
+}
+
+.editorial-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+@media (max-width: 860px) {
+    .editorial-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.editorial-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+}
+
+.editorial-item strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--primary-dark);
+    margin-bottom: 6px;
+}
+
+.editorial-item p {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.editorial-item a {
+    color: var(--primary);
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+
+/* 칼럼 타이틀 링크 및 모달+전문페이지 듀얼 버튼 스타일 */
+.column-title-link {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.column-title-link:hover {
+    color: var(--primary);
+    text-decoration: underline;
+}
+
+.column-action-btns {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-page-column {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 11px;
+    border-radius: 8px;
+    background: var(--primary);
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 800;
+    text-decoration: none;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.btn-page-column:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+/* 4열 자가진단 계산기 그리드 반응형 최적화 */
+@media (min-width: 960px) {
+    .calc-form-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (min-width: 641px) and (max-width: 959px) {
+    .calc-form-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

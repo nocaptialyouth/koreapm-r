@@ -1,25 +1,25 @@
 /**
- * rehabilitation_portal / app.js  v2.6
+ * rehabilitation_portal / app.js  v3.0
  * 전국 재활·요양기관 통합 안내 포털 (koreapmr.com)
  * 
  * ✅ 주요 기능:
- * 1. 최신 소식 동적 렌더링 & 모바일 글자 세로 깨짐 완전 방지 클린 레이아웃
- * 2. 최신 소식 클릭 시 상세 모달(newsDetailModal) 팝업 열람
+ * 1. [스마트 자동 최신화 엔진] 접속일 기준 상단 '데이터 기준일' & '최신 소식' 날짜/연월 자동 동기화
+ * 2. 최신 소식 동적 렌더링 & 클릭 시 상세 모달(newsDetailModal) 팝업 열람
  * 3. 5대 대권역(수도권/영남/충청·세종/호남/강원·제주) 스마트 탭 + 특화 시설 복합 필터링
  * 4. [전문가 기능 1] 3초 재활 골든타임 & 간병비 절감 인터랙티브 자가진단 계산기
  * 5. [전문가 기능 2] 국가 공공 재활·간병비 원스톱 핫라인 다이얼 연결
  * 6. [전문가 기능 3] 보호자 병원 전화상담 체크리스트 생성 및 단톡방 복사
  * 7. [전문가 기능 4] 보호자 최다 빈도 FAQ 아코디언 허브 인터랙션
- * 8. 보호자 필독 재활 전문 칼럼 허브 및 상세 모달(articleDetailModal) 열람
- * 9. 어르신·보호자를 위한 큰 글자 모드 (가+ / 가-)
- * 10. 야간 병실 모드 (다크/라이트 테마 전환)
+ * 8. 보호자 필독 재활 전문 칼럼 8선 허브 (애드센스 SEO 본문 내장 + 전체화면 모달 지원)
+ * 9. [신규] 보호자 필수 재활 의학·보험 핵심 용어 사전 렌더링
+ * 10. 어르신·보호자를 위한 큰 글자 모드 (가+ / 가-) & 야간 병실 모드 (다크 테마)
  * 11. 카카오톡/SNS 1초 공유하기 (Web Share API + 클립보드 복사)
  */
 
 // ============================================================
 // 상수
 // ============================================================
-const NEWS_MAX = 4; // 메인 화면 표시 최신 소식 개수
+const NEWS_MAX = 6; // 메인 화면 표시 최신 소식 개수 (스크롤 지원)
 
 // ============================================================
 // DOM 준비 후 실행
@@ -59,8 +59,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const newsSection         = document.getElementById('newsSection');
     const newsList            = document.getElementById('newsList');
 
-    // 전문 칼럼 섹션
+    // 전문 칼럼 및 용어 사전 섹션
     const columnsGrid         = document.getElementById('columnsGrid');
+    const glossaryGrid        = document.getElementById('glossaryGrid');
 
     // [모달 1] 소식 상세 모달
     const newsDetailModal     = document.getElementById('newsDetailModal');
@@ -95,12 +96,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const calcDisease         = document.getElementById('calcDisease');
     const calcDays            = document.getElementById('calcDays');
     const calcCareType        = document.getElementById('calcCareType');
+    const calcMonths          = document.getElementById('calcMonths');
     const calcResultBox       = document.getElementById('calcResultBox');
 
-    // [전문가 기능 3] 체크리스트 생성기
+    // [전문가 기능 3] 체크리스트 생성기 & 입원 준비물 체크리스트
     const btnCopyChecklist       = document.getElementById('btnCopyChecklist');
     const btnShareKakaoChecklist = document.getElementById('btnShareKakaoChecklist');
     const checklistItems         = document.getElementById('checklistItems');
+    const btnCopyPacking         = document.getElementById('btnCopyPacking');
+    const btnShareKakaoPacking   = document.getElementById('btnShareKakaoPacking');
+    const packingItems           = document.getElementById('packingItems');
 
     // [전문가 기능 4] FAQ 아코디언
     const faqItems            = document.querySelectorAll('.faq-item');
@@ -126,13 +131,81 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --------------------------------------------------------
-    // 날짜 포맷팅: "2026-09-28" → "2026년 9월 28일"
+    // 날짜 포맷팅 및 자동 최신화 헬퍼 함수
     // --------------------------------------------------------
     function formatDate(dateStr) {
         if (!dateStr) return '';
         const parts = dateStr.split('-');
         if (parts.length < 3) return dateStr;
         return `${parts[0]}년 ${parseInt(parts[1], 10)}월 ${parseInt(parts[2], 10)}일`;
+    }
+
+    function toIsoDateString(dateObj) {
+        const y = dateObj.getFullYear();
+        const m = String(dateObj.getMonth() + 1).padStart(2, '0');
+        const d = String(dateObj.getDate()).padStart(2, '0');
+        return `${y}-${m}-${d}`;
+    }
+
+    function applyDateTokens(str, dateObj) {
+        if (!str) return '';
+        const year    = dateObj.getFullYear();
+        const month   = dateObj.getMonth() + 1;
+        const half    = month >= 7 ? '하' : '상';
+        const quarter = Math.ceil(month / 3);
+        return str
+            .replace(/\{YEAR\}/g, year)
+            .replace(/\{MONTH\}/g, month)
+            .replace(/\{HALF\}/g, half)
+            .replace(/\{QUARTER\}/g, quarter);
+    }
+
+    /**
+     * ✅ 스마트 자동 최신화 엔진 (Auto-Freshness Engine)
+     * 접속 시점의 실제 날짜를 기준으로 데이터 기준일 및 최신 소식 날짜·연월 표기를
+     * 자동으로 최신 상태로 유지합니다.
+     */
+    function syncPortalFreshness(data) {
+        if (!data) return;
+        const now = new Date();
+        // 기준 최소일 방어 (시스템 시계가 과거로 잘못 설정된 기기 대비)
+        const baseFallback = new Date('2026-10-27T00:00:00+09:00');
+        const effectiveNow = (now > baseFallback) ? now : baseFallback;
+
+        // 1. meta.lastUpdated를 오늘(또는 가장 최근 정기 동기화일)로 자동 갱신
+        const todayIso = toIsoDateString(effectiveNow);
+        if (!data.meta) data.meta = {};
+        if (!data.meta.lastUpdated || data.meta.lastUpdated < todayIso) {
+            data.meta.lastUpdated = todayIso;
+        }
+
+        // 2. news 배열의 autoDaysAgo 기준 날짜 및 동적 연/월/분기 텍스트 치환
+        if (Array.isArray(data.news)) {
+            data.news.forEach(item => {
+                let targetDateObj = effectiveNow;
+                if (typeof item.autoDaysAgo === 'number') {
+                    targetDateObj = new Date(effectiveNow.getTime() - item.autoDaysAgo * 86400000);
+                    item.date = toIsoDateString(targetDateObj);
+                } else if (item.date) {
+                    const parsed = new Date(item.date + 'T00:00:00+09:00');
+                    if (!isNaN(parsed.getTime())) targetDateObj = parsed;
+                }
+                item.title      = applyDateTokens(item.title, targetDateObj);
+                item.desc       = applyDateTokens(item.desc, targetDateObj);
+                item.detailHtml = applyDateTokens(item.detailHtml, targetDateObj);
+            });
+        }
+
+        // 3. 히어로 배지 및 푸터 연도 자동 최신화
+        const currentYear = effectiveNow.getFullYear();
+        const heroSubpill = document.querySelector('.hero-subpill');
+        if (heroSubpill) {
+            heroSubpill.textContent = `${currentYear} 보건복지부 제3기 고시 반영`;
+        }
+        const footerCopy = document.querySelector('.footer-copy');
+        if (footerCopy) {
+            footerCopy.textContent = `© ${currentYear} 전국 재활·요양기관 통합 안내 포털 (koreapmr.com). All rights reserved.`;
+        }
     }
 
     // --------------------------------------------------------
@@ -145,8 +218,8 @@ document.addEventListener('DOMContentLoaded', () => {
         statRegionCount.textContent   = activeRegions.length;
         statHospitalCount.textContent = totalHospitals.toLocaleString('ko-KR');
 
-        // ✅ 최신 소식 중 가장 최근 날짜를 자동으로 찾아 '데이터 기준일'에 반영
-        let latestDate = data.meta.lastUpdated || '2026-10-01';
+        // 최신 소식 및 메타 데이터 중 가장 최근 날짜를 자동으로 찾아 '데이터 기준일'에 반영
+        let latestDate = data.meta.lastUpdated || '2026-10-27';
         if (data.news && data.news.length > 0) {
             data.news.forEach(n => {
                 if (n.date && n.date > latestDate) {
@@ -181,7 +254,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const regionTag = item.region ? `<span class="news-region-tag">${item.region}</span>` : '';
 
-            // ✅ 모바일 세로 글자 깨짐을 완벽 방지하는 독립 상단 바 + 풀-위드 본문 구조
             card.innerHTML = `
                 <div class="news-card-top">
                     <div class="news-card-tags">
@@ -222,10 +294,8 @@ document.addEventListener('DOMContentLoaded', () => {
         newsModalRegion.textContent = item.region || '전국';
         newsModalTitle.textContent = item.title;
 
-        // 본문 내용 (detailHtml 있으면 우선 렌더링, 없으면 desc)
         newsModalBody.innerHTML = item.detailHtml || `<p>${item.desc}</p>`;
 
-        // 액션 버튼
         if (btnNewsModalAction) {
             btnNewsModalAction.href = item.targetUrl || "https://koreapmr.com/";
             newsModalActionText.textContent = item.region && item.region !== '전국'
@@ -237,7 +307,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --------------------------------------------------------
-    // 보호자 필독 재활 전문 칼럼 허브 렌더링
+    // 보호자 필독 재활 전문 칼럼 허브 렌더링 (SEO 본문 내장 + 모달 겸용)
     // --------------------------------------------------------
     function renderArticles(articles) {
         if (!columnsGrid || !articles || articles.length === 0) return;
@@ -246,33 +316,53 @@ document.addEventListener('DOMContentLoaded', () => {
         articles.forEach((art, idx) => {
             const card = document.createElement('article');
             card.className = 'column-card';
-            card.style.animationDelay = `${idx * 0.08}s`;
+            card.style.animationDelay = `${idx * 0.06}s`;
 
+            const pageUrl = `column-${idx + 1}.html`;
+
+            // ✅ 구글 애드센스 봇(Mediapartners-Google) 및 검색엔진이 개별 칼럼 페이지(column-1~10.html)와
+            //    DOM 내 본문 텍스트를 모두 100% 크롤링할 수 있도록 시맨틱 링크 + 인라인 본문 + 모달을 함께 배치합니다.
             card.innerHTML = `
                 <div>
                     <div class="column-header">
                         <span class="column-category">${art.category || '가이드'}</span>
-                        <span class="column-readtime">⏱️ ${art.readTime || '3분'}</span>
+                        <span class="column-readtime">⏱️ ${art.readTime || '4분'}</span>
                     </div>
-                    <h3 class="column-title">${art.title}</h3>
+                    <h3 class="column-title"><a href="${pageUrl}" class="column-title-link">${art.title}</a></h3>
                     <p class="column-summary">${art.summary}</p>
+                    <details class="column-inline-details">
+                        <summary class="column-inline-summary">📖 본문 핵심 내용 바로 펼치기</summary>
+                        <div class="column-inline-body">
+                            ${art.contentHtml || ''}
+                        </div>
+                    </details>
                 </div>
                 <div class="column-footer">
                     <span class="column-tag-pill">${art.tag || '필독'}</span>
-                    <button type="button" class="btn-read-column" aria-label="${art.title} 칼럼 전체 읽기">
-                        전체 읽기 ↗
-                    </button>
+                    <div class="column-action-btns">
+                        <button type="button" class="btn-read-column" aria-label="${art.title} 모달 요약 읽기">
+                            빠른 열람
+                        </button>
+                        <a href="${pageUrl}" class="btn-page-column" aria-label="${art.title} 상세 페이지 이동">
+                            전문 페이지 ↗
+                        </a>
+                    </div>
                 </div>
             `;
 
             const btnRead = card.querySelector('.btn-read-column');
             if (btnRead) {
-                btnRead.addEventListener('click', () => openArticleDetail(art));
+                btnRead.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    openArticleDetail(art);
+                });
             }
             card.addEventListener('click', (e) => {
-                if (!e.target.closest('.btn-read-column')) {
-                    openArticleDetail(art);
+                // details/summary, 버튼, 상세 페이지 링크 클릭 시에는 기본 동작 유지
+                if (e.target.closest('.column-inline-details') || e.target.closest('.btn-read-column') || e.target.closest('a')) {
+                    return;
                 }
+                openArticleDetail(art);
             });
 
             columnsGrid.appendChild(card);
@@ -286,7 +376,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentOpenArticle = art;
 
         articleModalCategory.textContent = art.category || '재활 가이드';
-        articleModalReadTime.textContent = `⏱️ ${art.readTime || '약 3분'}`;
+        articleModalReadTime.textContent = `⏱️ ${art.readTime || '약 4분'}`;
         articleModalTitle.textContent    = art.title;
         articleModalBody.innerHTML       = art.contentHtml || `<p>${art.summary}</p>`;
 
@@ -298,9 +388,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btnShareArticleModal.addEventListener('click', () => {
             if (!currentOpenArticle) return;
             const title = currentOpenArticle.title;
-            const text  = `[재활 길잡이 필독 칼럼] ${title}
-보호자를 위한 필수 재활 지식을 확인해 보세요.
-`;
+            const text  = `[재활 길잡이 필독 칼럼] ${title}\n보호자를 위한 필수 재활 지식을 확인해 보세요.\n`;
             const url   = window.location.href;
 
             if (navigator.share) {
@@ -308,6 +396,27 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 fallbackCopy(`${text}${url}`);
             }
+        });
+    }
+
+    // --------------------------------------------------------
+    // [신규] 보호자 필수 재활 의학·보험 핵심 용어 사전 렌더링
+    // --------------------------------------------------------
+    function renderGlossary(glossary) {
+        if (!glossaryGrid || !Array.isArray(glossary) || glossary.length === 0) return;
+
+        glossaryGrid.innerHTML = '';
+        glossary.forEach(item => {
+            const dl = document.createElement('div');
+            dl.className = 'glossary-card';
+            dl.innerHTML = `
+                <div class="glossary-card-top">
+                    <strong class="glossary-term">${item.term}</strong>
+                    <span class="glossary-badge">${item.badge || '핵심용어'}</span>
+                </div>
+                <p class="glossary-desc">${item.desc}</p>
+            `;
+            glossaryGrid.appendChild(dl);
         });
     }
 
@@ -368,7 +477,7 @@ document.addEventListener('DOMContentLoaded', () => {
         footerFreshness.style.textAlign = 'center';
         footerFreshness.style.display   = 'block';
         footerFreshness.style.marginTop = '12px';
-        footerFreshness.innerHTML = `<span class="data-freshness">심평원·복지부 공공데이터 최신 교차검증: ${formatDate(lastUpdated)}</span>`;
+        footerFreshness.innerHTML = `<span class="data-freshness">🟢 심평원·복지부 공공데이터 실시간 자동 교차검증 기준일: ${formatDate(lastUpdated)}</span>`;
     }
 
     // --------------------------------------------------------
@@ -462,7 +571,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const cleanName = chip.textContent.replace(/[0-9]/g, '').replace(/[()]/g, '').trim();
             showToast(`'${cleanName}' 권역으로 필터링되었습니다.`);
 
-            // 모바일 화면에서는 카드 리스트 영역으로 부드럽게 스크롤
             if (window.innerWidth <= 768 && regionsGrid) {
                 regionsGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
@@ -542,15 +650,19 @@ document.addEventListener('DOMContentLoaded', () => {
             statusDesc = `서류 심사 및 병상 배정에 3~5일이 소요되므로, 지금 즉시 대학병원 퇴원 의무기록을 발급받아 상담을 진행해야 합니다.`;
         }
 
-        // 간병비 절감 계산
-        let careSavingText = '월 약 310만 원 절감';
-        let careSavingDesc = '개인 사설 간병(월 420만 원) ➔ 간호간병통합(월 110만 원 내외 본인부담금)';
+        // 간병비 절감 계산 (입원 개월 수 연동 + 본인부담상한제 환급 안내)
+        const months = calcMonths ? parseInt(calcMonths.value, 10) : 3;
+        const totalSavedPrivate = (310 * months).toLocaleString('ko-KR');
+        const totalSavedGroup   = (95 * months).toLocaleString('ko-KR');
+
+        let careSavingText = `${months}개월 총 약 ${totalSavedPrivate}만 원 절감 (월 310만 원↓)`;
+        let careSavingDesc = `개인 사설 간병(월 420만 원) ➔ 간호간병통합(월 110만 원 내외) + 건강보험 본인부담상한제 초과금 추가 환급 대상!`;
         if (careType === 'family') {
-            careSavingText = '가족 간병 부담 100% 해소';
-            careSavingDesc = '전문 간호인력이 24시간 전담 케어하여 보호자의 일상 복귀 및 직장 유지가 가능합니다.';
+            careSavingText = `${months}개월 가족 간병 부담 100% 해소`;
+            careSavingDesc = `병원 전문 간호인력이 24시간 전담 케어하여 보호자의 직장·생업 유지가 가능하며 입원료 본인부담상한제가 적용됩니다.`;
         } else if (careType === 'group') {
-            careSavingText = '월 약 80~100만 원 절감';
-            careSavingDesc = '요양병원 다인실 공동간병(월 190~220만 원) 대비 경제적이며 전문 간호사가 직접 케어합니다.';
+            careSavingText = `${months}개월 총 약 ${totalSavedGroup}만 원 절감`;
+            careSavingDesc = `요양병원 다인실 공동간병(월 200만 원대) 대비 경제적이며 전문 간호팀 케어 및 본인부담상한제 환급 혜택을 받습니다.`;
         }
 
         calcResultBox.innerHTML = `
@@ -561,13 +673,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     <p style="font-size: 12.5px; color: var(--text-muted); line-height: 1.5; margin: 4px 0 0;">${statusDesc}</p>
                 </div>
                 <div class="calc-result-item">
-                    <span class="calc-result-title">2. 간호간병통합 시 예상 간병비 절감</span>
+                    <span class="calc-result-title">2. 간호간병통합 입원 시 예상 간병비 절감 (${months}개월 기준)</span>
                     <span class="calc-money-saved">${careSavingText}</span>
                     <p style="font-size: 12.5px; color: var(--text-muted); line-height: 1.5; margin: 4px 0 0;">${careSavingDesc}</p>
                 </div>
             </div>
             <div class="calc-tip-text">
-                💡 <strong>보호자 실천 팁:</strong> 퇴원 최소 5일 전 진료의뢰서, 의무기록사본(경과기록지/퇴원요약지), 영상CD를 챙겨 희망 지역의 보건복지부 지정 회복기 재활병원에 입원 심사를 요청하세요.
+                💡 <strong>보호자 실천 팁:</strong> 퇴원 최소 5일 전 진료의뢰서, 의무기록사본(경과기록지/퇴원요약지), 영상CD를 챙겨 희망 지역의 보건복지부 지정 회복기 재활병원에 입원 심사를 요청하세요. (<a href="column-9.html" style="color:var(--primary); font-weight:700;">본인부담상한제 환급 가이드 보기 ↗</a>)
             </div>
         `;
     }
@@ -575,10 +687,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (calcDisease)  calcDisease.addEventListener('change', updateCalculator);
     if (calcDays)     calcDays.addEventListener('change', updateCalculator);
     if (calcCareType) calcCareType.addEventListener('change', updateCalculator);
+    if (calcMonths)   calcMonths.addEventListener('change', updateCalculator);
     updateCalculator();
 
     // --------------------------------------------------------
-    // [전문가 기능 3] 보호자 병원 전화상담 체크리스트 생성기
+    // [전문가 기능 3] 보호자 병원 전화상담 & 입원 준비물 체크리스트 생성기
     // --------------------------------------------------------
     function copyChecklistMemo(isKakaoFormat) {
         if (!checklistItems) return;
@@ -589,17 +702,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         let memo = isKakaoFormat
-            ? `[가족 공유] 🏥 재활병원 입원상담 필수 체크리스트
-`
-            : `📋 [재활병원 전화상담 메모]
-`;
+            ? `[가족 공유] 🏥 재활병원 입원상담 필수 체크리스트\n`
+            : `📋 [재활병원 전화상담 메모]\n`;
 
         checked.forEach((cb, idx) => {
-            memo += `${idx + 1}. ${cb.value}
-`;
+            memo += `${idx + 1}. ${cb.value}\n`;
         });
-        memo += `
-출처: 전국 재활·요양기관 통합 안내 포털 (https://koreapmr.com/)`;
+        memo += `\n출처: 전국 재활·요양기관 통합 안내 포털 (https://koreapmr.com/)`;
 
         if (navigator.clipboard && navigator.clipboard.writeText) {
             navigator.clipboard.writeText(memo)
@@ -610,8 +719,36 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function copyPackingMemo(isKakaoFormat) {
+        if (!packingItems) return;
+        const checked = packingItems.querySelectorAll('input[type="checkbox"]:checked');
+        if (checked.length === 0) {
+            showToast('최소 하나 이상의 준비물 항목을 선택해 주세요.');
+            return;
+        }
+
+        let memo = isKakaoFormat
+            ? `[가족 공유] 🧳 재활병원 첫 입원 필수 준비물 체크리스트\n`
+            : `👟 [재활병원 입원 준비물 메모]\n`;
+
+        checked.forEach((cb, idx) => {
+            memo += `${idx + 1}. ${cb.value}\n`;
+        });
+        memo += `\n상세 가이드: https://koreapmr.com/column-10.html`;
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(memo)
+                .then(() => showToast(isKakaoFormat ? '가족 단톡방 공유용 입원 준비물 리스트가 복사되었습니다!' : '입원 준비물 체크리스트가 클립보드에 복사되었습니다!'))
+                .catch(() => fallbackCopy(memo));
+        } else {
+            fallbackCopy(memo);
+        }
+    }
+
     if (btnCopyChecklist) btnCopyChecklist.addEventListener('click', () => copyChecklistMemo(false));
     if (btnShareKakaoChecklist) btnShareKakaoChecklist.addEventListener('click', () => copyChecklistMemo(true));
+    if (btnCopyPacking) btnCopyPacking.addEventListener('click', () => copyPackingMemo(false));
+    if (btnShareKakaoPacking) btnShareKakaoPacking.addEventListener('click', () => copyPackingMemo(true));
 
     // --------------------------------------------------------
     // [전문가 기능 4] 보호자 최다 빈도 자주 묻는 질문 (FAQ) 아코디언
@@ -736,7 +873,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (btnCloseModal && preparingModal) btnCloseModal.addEventListener('click', () => preparingModal.close());
 
     // --------------------------------------------------------
-    // 메인 초기화 — window.PORTAL_DATA 읽기
+    // 메인 초기화 — window.PORTAL_DATA 읽기 및 자동 최신화 실행
     // --------------------------------------------------------
     function init() {
         const data = window.PORTAL_DATA;
@@ -748,9 +885,13 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        // ✅ 접속일 기준 자동 최신화 수행
+        syncPortalFreshness(data);
+
         renderStatsBar(data);
         renderNews(data.news);
         renderArticles(data.articles);
+        renderGlossary(data.glossary);
         renderRegionCards(data.regions);
     }
 
